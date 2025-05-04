@@ -1,7 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const FavoriteContext = createContext();
+
+const baseURL = process.env.REACT_APP_API_URL;
 
 export const FavoriteProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
@@ -10,7 +15,7 @@ export const FavoriteProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     if (!token) return;
     try {
-      const res = await axios.get("http://localhost:5000/api/user/favorites", {
+      const res = await axios.get(`${baseURL}/api/user/favorites`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -25,7 +30,7 @@ export const FavoriteProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     try {
       await axios.post(
-        "http://localhost:5000/api/user/favorite",
+        `${baseURL}/api/user/favorite`,
         { countryCode },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -40,7 +45,7 @@ export const FavoriteProvider = ({ children }) => {
   const removeFavorite = async (countryCode) => {
     const token = localStorage.getItem("token");
     try {
-      await axios.delete("http://localhost:5000/api/user/favorite", {
+      await axios.delete(`${baseURL}/api/user/favorite`, {
         headers: { Authorization: `Bearer ${token}` },
         data: { countryCode },
       });
