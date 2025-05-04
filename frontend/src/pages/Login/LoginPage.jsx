@@ -12,7 +12,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/user/login",
+        `${process.env.REACT_APP_API_URL}/api/user/login`,
         { userName }
       );
 

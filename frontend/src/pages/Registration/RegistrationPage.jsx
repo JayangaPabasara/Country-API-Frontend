@@ -13,7 +13,7 @@ const RegistrationPage = () => {
     e.preventDefault();
     try {
       const respons = await axios.post(
-        "http://localhost:5000/api/user/register",
+        `${process.env.REACT_APP_API_URL}/api/user/register`,
         {
           name,
           userName,
