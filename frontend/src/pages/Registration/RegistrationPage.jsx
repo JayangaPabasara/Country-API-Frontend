@@ -13,7 +13,7 @@ const RegistrationPage = () => {
     e.preventDefault();
     try {
       const respons = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/user/register`,
+        "https://country-api-backend-production.up.railway.app/api/user/register",
         {
           name,
           userName,

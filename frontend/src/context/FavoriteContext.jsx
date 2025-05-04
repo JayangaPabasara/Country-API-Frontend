@@ -3,7 +3,7 @@ import axios from "axios";
 
 const FavoriteContext = createContext();
 
-const baseURL = process.env.REACT_APP_API_URL;
+const baseURL = process.env.REACT_APP_API_URL || 'https://country-api-backend-production.up.railway.app';
 
 export const FavoriteProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
